@@ -5,8 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public enum ProductSourceType {
     JINGDONG(1, "京东"),
-//    TAOBAO(2, "淘宝")
-    ;
+    TAOBAO(2, "淘宝");
 
 
     private Integer key;

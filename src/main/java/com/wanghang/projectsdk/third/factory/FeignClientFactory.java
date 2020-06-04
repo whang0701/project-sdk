@@ -4,9 +4,7 @@ import com.wanghang.projectsdk.base.enumeration.ProductSourceType;
 import com.wanghang.projectsdk.third.controller.IOrderController;
 import com.wanghang.projectsdk.third.controller.IProductController;
 import com.wanghang.projectsdk.third.controller.IRemarkController;
-import com.wanghang.projectsdk.third.feign.JDOrderFeignClient;
-import com.wanghang.projectsdk.third.feign.JDProductFeignClient;
-import com.wanghang.projectsdk.third.feign.JDRemarkFeignClient;
+import com.wanghang.projectsdk.third.feign.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,33 +16,31 @@ import org.springframework.stereotype.Component;
 public class FeignClientFactory {
 
 
+    // 京东
     private static JDProductFeignClient jdProductFeignClient;
-
-//    private static TBProductFeignClient tbProductFeignClient;
-
     private static JDRemarkFeignClient jdRemarkFeignClient;
-
-
     private static JDOrderFeignClient jdOrderFeignClient;
+    // 淘宝
+    private static TBProductFeignClient tbProductFeignClient;
+    private static TBRemarkFeignClient tbRemarkFeignClient;
+    private static TBOrderFeignClient tbOrderFeignClient;
 
     @Autowired(required = false)
-    public void setJdProductFeignClient(JDProductFeignClient jdProductFeignClient) {
+    public void setJdFeignClient(JDProductFeignClient jdProductFeignClient,
+                                 JDRemarkFeignClient jdRemarkFeignClient,
+                                 JDOrderFeignClient jdOrderFeignClient) {
         FeignClientFactory.jdProductFeignClient = jdProductFeignClient;
-    }
-
-//    @Autowired(required = false)
-//    public void setTbProductFeignClient(TBProductFeignClient tbProductFeignClient) {
-//        ProductFeignFactory.tbProductFeignClient = tbProductFeignClient;
-//    }
-
-    @Autowired(required = false)
-    public void setJdRemarkFeignClient(JDRemarkFeignClient jdRemarkFeignClient) {
         FeignClientFactory.jdRemarkFeignClient = jdRemarkFeignClient;
+        FeignClientFactory.jdOrderFeignClient = jdOrderFeignClient;
     }
 
     @Autowired(required = false)
-    public void setJDOrderFeignClient(JDOrderFeignClient jdOrderFeignClient) {
-        FeignClientFactory.jdOrderFeignClient = jdOrderFeignClient;
+    public void setTbFeignClient(TBProductFeignClient tbProductFeignClient,
+                                 TBRemarkFeignClient tbRemarkFeignClient,
+                                 TBOrderFeignClient tbOrderFeignClient) {
+        FeignClientFactory.tbProductFeignClient = tbProductFeignClient;
+        FeignClientFactory.tbRemarkFeignClient = tbRemarkFeignClient;
+        FeignClientFactory.tbOrderFeignClient = tbOrderFeignClient;
     }
 
 
@@ -52,8 +48,8 @@ public class FeignClientFactory {
         switch (type) {
             case JINGDONG:
                 return jdProductFeignClient;
-//            case TAOBAO:
-//                return tbProductFeignClient;
+            case TAOBAO:
+                return tbProductFeignClient;
             default:
                 return null;
         }
@@ -63,8 +59,8 @@ public class FeignClientFactory {
         switch (type) {
             case JINGDONG:
                 return jdRemarkFeignClient;
-//            case TAOBAO:
-//                return tbProductFeignClient;
+            case TAOBAO:
+                return tbRemarkFeignClient;
             default:
                 return null;
         }
@@ -74,8 +70,8 @@ public class FeignClientFactory {
         switch (type) {
             case JINGDONG:
                 return jdOrderFeignClient;
-//            case TAOBAO:
-//                return tbProductFeignClient;
+            case TAOBAO:
+                return tbOrderFeignClient;
             default:
                 return null;
         }
