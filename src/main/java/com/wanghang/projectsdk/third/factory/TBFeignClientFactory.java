@@ -5,11 +5,13 @@ import com.wanghang.projectsdk.third.controller.IProductController;
 import com.wanghang.projectsdk.third.controller.IRemarkController;
 import com.wanghang.projectsdk.third.feign.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author wanghang
  * @date 2020/6/4
  **/
+@Component
 public class TBFeignClientFactory implements IFeignClientFactory {
 
     @Autowired

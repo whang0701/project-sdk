@@ -7,11 +7,13 @@ import com.wanghang.projectsdk.third.feign.JDOrderFeignClient;
 import com.wanghang.projectsdk.third.feign.JDProductFeignClient;
 import com.wanghang.projectsdk.third.feign.JDRemarkFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author wanghang
  * @date 2020/6/4
  **/
+@Component
 public class JDFeignClientFactory implements IFeignClientFactory {
 
     @Autowired
